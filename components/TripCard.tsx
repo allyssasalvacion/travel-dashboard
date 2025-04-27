@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router';
-import { cn, getFirstWord } from 'lib/utils';
+import { cn, getFirstWord } from '~/lib/utils';
 import {
   ChipDirective,
   ChipListComponent,
