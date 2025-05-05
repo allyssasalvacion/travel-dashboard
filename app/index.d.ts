@@ -146,6 +146,7 @@ declare interface TripsInterest {
 declare interface InfoPillProps {
   text: string;
   image: string;
+  className?: string;
 }
 
 declare interface TripFormData {

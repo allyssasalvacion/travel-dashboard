@@ -83,10 +83,11 @@ const TripDetail = ({ loaderData }: Route.ComponentProps) => {
       <section className='container wrapper-md'>
         <header>
           <h1 className='p-40-semibold text-dark-100'>{name}</h1>
-          <div className='flex items-center gap-5'>
+          <div className='flex items-start gap-8'>
             <InfoPill
               text={`${duration} day plan`}
               image='/assets/icons/calendar.svg'
+              className='whitespace-nowrap shrink-0'
             />
             <InfoPill
               text={
@@ -96,6 +97,7 @@ const TripDetail = ({ loaderData }: Route.ComponentProps) => {
                   .join(', ') || ''
               }
               image='/assets/icons/location-mark.svg'
+              className='text-ellipsis overflow-hidden whitespace-normal'
             />
           </div>
         </header>
