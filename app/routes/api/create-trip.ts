@@ -24,6 +24,7 @@ export const action = async ({request}: ActionFunctionArgs) => {
             Interests: '${interests}'
             TravelStyle: '${travelStyle}'
             GroupType: '${groupType}'
+            In the "activities" array for each day, include an emoji at the **start** of each "description" that matches the type of activity (e.g. 🏰 for sightseeing, 🖼️ for museums, 🌲 for nature, 🍽️ for dining, 🛍️ for shopping, etc.). Do not repeat emojis across the same day unless needed.
             Return the itinerary and lowest estimated price in a clean, non-markdown JSON format with the following structure:
             {
             "name": "A descriptive title for the trip",
