@@ -18,12 +18,7 @@ const MobileSidebar = () => {
     <div className='mobile-sidebar wrapper'>
       <header>
         <Link to='/'>
-          <img
-            src='/assets/icons/logo.svg'
-            alt='Logo'
-            className='size-[30px]'
-          />
-          <h1>Tourvisto</h1>
+          <h1 className='gradient-title'>LILWander ✨</h1>
         </Link>
         <button onClick={toggleSidebar}>
           <img src='/assets/icons/menu.svg' alt='menu' className='size-7' />

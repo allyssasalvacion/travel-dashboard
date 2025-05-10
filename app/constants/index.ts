@@ -20,6 +20,12 @@ export const sidebarItems = [
     label: "AI Trips",
     href: "/trips",
   },
+  {
+    id: 5,
+    icon: "/assets/icons/logout.svg",
+    label: "Log out",
+    logout: true,
+  },
 ];
 
 export const chartOneData: object[] = [

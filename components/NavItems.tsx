@@ -15,28 +15,21 @@ const NavItems = ({ handleClick }: { handleClick?: () => void }) => {
   return (
     <section className='nav-items'>
       <Link to='/' className='link-logo'>
-        <img src='/assets/icons/logo.svg' alt='logo' className='size-[30px]' />
-        <h1>Tourvisto</h1>
+        <h1>LILWander ✨</h1>
       </Link>
 
       <div className='container'>
         <nav>
-          {sidebarItems.map(({ id, href, icon, label }) => (
-            <NavLink to={href} key={id}>
+          {sidebarItems.map(({ id, href, icon, label, logout }) => (
+            <NavLink to={href!} key={id}>
               {({ isActive }: { isActive: boolean }) => (
                 <div
                   className={cn('group nav-item', {
-                    'bg-primary-100 !text-white': isActive,
+                    'bg-radical-50': isActive && !logout,
                   })}
-                  onClick={handleClick}
+                  onClick={logout ? handleLogout : handleClick}
                 >
-                  <img
-                    src={icon}
-                    alt={label}
-                    className={`group-hover:brightness-0 size-0 group-hover:invert ${
-                      isActive ? 'brightness-0 invert' : 'text-dark-200'
-                    }`}
-                  />
+                  <img src={icon} alt={label} />
                   {label}
                 </div>
               )}
@@ -53,13 +46,6 @@ const NavItems = ({ handleClick }: { handleClick?: () => void }) => {
             <h2>{user?.name}</h2>
             <p>{user?.email}</p>
           </article>
-          <button onClick={handleLogout} className='cursor-pointer'>
-            <img
-              src='/assets/icons/logout.svg'
-              alt='logout'
-              className='size-6'
-            />
-          </button>
         </footer>
       </div>
     </section>

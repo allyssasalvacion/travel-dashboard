@@ -37,6 +37,8 @@
   --color-red-500: #b93815;
   --color-red-50: #fff4ed;
   --color-red-100: #ff543d;
+  --color-radical-700: #E43F43;
+  --color-radical-50: rgba(228,63,67,0.09);
 
   --background-image-auth: url("/assets/images/auth-img.webp");
   --background-image-hero: url("/assets/images/hero-img.png");
@@ -279,16 +281,16 @@
   .link-logo {
     @apply flex items-center gap-1.5 py-10 border-b border-light-100;
     h1 {
-      @apply text-base md:text-2xl font-bold text-dark-100;
+      @apply text-base md:text-2xl font-bold bg-gradient-to-r from-[#B53034] via-[#E43F43] to-[#F06568] text-transparent bg-clip-text;
     }
   }
   .nav-footer {
     @apply flex items-center gap-2.5 pb-8;
     img {
-      @apply size-10 rounded-full aspect-square;
+      @apply size-10 rounded-md aspect-square;
     }
     article {
-      @apply flex flex-col gap-[2px] max-w-[115px];
+      @apply flex flex-col gap-[2px] max-w-[170px];
       h2 {
         @apply text-sm md:text-base font-semibold text-dark-200 truncate;
       }
@@ -394,6 +396,9 @@
   .wrapper {
     @apply w-full max-w-7xl mx-auto px-4 lg:px-8;
   }
+  .gradient-title {
+    @apply bg-gradient-to-r from-[#B53034] via-[#E43F43] to-[#F06568] text-transparent bg-clip-text;
+  }
   .wrapper-md {
     @apply w-full max-w-3xl px-4 lg:px-8 mx-auto;
   }
@@ -462,7 +467,7 @@
     @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-7;
   }
   .nav-item {
-    @apply flex items-center text-xs md:text-lg font-normal cursor-pointer gap-2.5 py-[18px] px-3.5 rounded-lg text-dark-200 hover:bg-primary-100 hover:text-white;
+    @apply flex items-center text-xs md:text-base font-normal cursor-pointer gap-2.5 py-[12px] px-3.5 rounded-lg text-dark-200 hover:bg-radical-50;
   }
   .combo-box {
     @apply !p-3.5 !border w-full !border-light-400 !rounded-xl !text-base !text-dark-300 !font-normal;
