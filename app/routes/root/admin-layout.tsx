@@ -1,6 +1,6 @@
-import { Outlet, redirect } from 'react-router';
+import { Outlet, redirect, useNavigation } from 'react-router';
 import { SidebarComponent } from '@syncfusion/ej2-react-navigations';
-import { MobileSidebar, NavItems } from 'components';
+import { Loading, MobileSidebar, NavItems } from 'components';
 import { getExistingUser, storeUserData } from '~/appwrite/auth';
 import { account } from '~/appwrite/client';
 
@@ -23,10 +23,14 @@ export async function clientLoader() {
 }
 
 const AdminLayout = () => {
+  const navigation = useNavigation();
+  const isNavigating = Boolean(navigation.state !== 'idle');
+
   return (
-    <div className='admin-layout'>
+    <div className='admin-layout relative'>
+      {isNavigating && <Loading />}
       <MobileSidebar />
-      <aside className='w-full max-w-[270px] hidden lg:block'>
+      <aside className='w-full max-w-[270px] hidden lg:block z-1000'>
         <SidebarComponent width={270} enableGestures={false}>
           <NavItems />
         </SidebarComponent>

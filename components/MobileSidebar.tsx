@@ -1,14 +1,17 @@
 // @ts-nocheck
 
 import { SidebarComponent } from '@syncfusion/ej2-react-navigations';
+import { useRef } from 'react';
 import { Link } from 'react-router';
 import NavItems from './NavItems';
 
 const MobileSidebar = () => {
-  let sidebar: SidebarComponent;
+  const sidebarRef = useRef<SidebarComponent | null>(null);
 
   const toggleSidebar = () => {
-    sidebar.toggle();
+    if (sidebarRef.current) {
+      sidebarRef.current.toggle();
+    }
   };
 
   return (
@@ -28,8 +31,8 @@ const MobileSidebar = () => {
       </header>
       <SidebarComponent
         width={270}
-        ref={(Sidebar) => (sidebar = Sidebar)}
-        created={() => sidebar.hide()}
+        ref={sidebarRef}
+        created={() => sidebarRef.current?.hide()}
         closeOnDocumentClick={true}
         showBackdrop={true}
         type='over'
