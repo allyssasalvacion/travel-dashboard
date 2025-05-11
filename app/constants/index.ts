@@ -9,19 +9,13 @@ export const sidebarItems = [
     href: "/",
   },
   {
-    id: 3,
-    icon: "/assets/icons/users.svg",
-    label: "All Users",
-    href: "/all-users",
-  },
-  {
-    id: 4,
+    id: 2,
     icon: "/assets/icons/itinerary.svg",
     label: "AI Trips",
     href: "/trips",
   },
   {
-    id: 5,
+    id: 3,
     icon: "/assets/icons/logout.svg",
     label: "Log out",
     logout: true,

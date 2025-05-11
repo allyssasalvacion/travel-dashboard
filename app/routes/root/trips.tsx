@@ -45,37 +45,41 @@ const Trips = ({ loaderData }: Route.ComponentProps) => {
         ctaText='Create a trip'
         ctaUrl='/trips/create'
       />
-      <section>
-        <h1 className='p-24-semibold text-dark-100'>Manage Created Trips</h1>
-        <div className='trip-grid my-4'>
-          {trips.map(
-            ({
-              id,
-              name,
-              imageUrls,
-              itinerary,
-              interests,
-              travelStyle,
-              estimatedPrice,
-            }) => (
-              <TripCard
-                id={id}
-                key={id}
-                name={name}
-                location={itinerary?.[0].location ?? ''}
-                imageUrl={imageUrls[0]}
-                tags={[interests, travelStyle]}
-                price={estimatedPrice}
-              />
-            )
-          )}
+      <section className='flex flex-col lg:min-h-[80vh] lg:justify-between'>
+        <div>
+          <h1 className='p-24-semibold text-dark-100'>Manage Created Trips</h1>
+          <div className='trip-grid my-4'>
+            {trips.map(
+              ({
+                id,
+                name,
+                imageUrls,
+                itinerary,
+                interests,
+                travelStyle,
+                estimatedPrice,
+              }) => (
+                <TripCard
+                  id={id}
+                  key={id}
+                  name={name}
+                  location={itinerary?.[0].location ?? ''}
+                  imageUrl={imageUrls[0]}
+                  tags={[interests, travelStyle]}
+                  price={estimatedPrice}
+                />
+              )
+            )}
+          </div>
         </div>
-        <PagerComponent
-          totalRecordsCount={loaderData.total}
-          pageSize={8}
-          currentPage={currentPage}
-          click={(args) => handlePageChange(args.currentPage)}
-        />
+        <div className='mt-auto'>
+          <PagerComponent
+            totalRecordsCount={loaderData.total}
+            pageSize={8}
+            currentPage={currentPage}
+            click={(args) => handlePageChange(args.currentPage)}
+          />
+        </div>
       </section>
     </main>
   );

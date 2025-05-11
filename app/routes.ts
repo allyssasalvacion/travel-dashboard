@@ -5,7 +5,6 @@ export default [
     route('api/create-trip', 'routes/api/create-trip.ts'),
     layout('routes/root/admin-layout.tsx', [
         route('/', 'routes/root/dashboard.tsx'),
-        route('all-users', 'routes/root/all-users.tsx'),
         route('trips', 'routes/root/trips.tsx'),
         route('trips/create', 'routes/root/create-trip.tsx'),
         route('trips/:tripId', 'routes/root/trip-detail.tsx')
