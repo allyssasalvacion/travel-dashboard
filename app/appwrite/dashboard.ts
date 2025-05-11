@@ -54,15 +54,15 @@ export const getUsersAndTripsStats = async (): Promise<DashboardStats> => {
             )
         },
         userRole: {
-            total: filterUsersByRole('user').length,
+            total: filterUsersByRole('admin').length,
             currentMonth: filterByDate(
-                filterUsersByRole('user'),
+                filterUsersByRole('admin'),
                 'joinedAt',
                 startCurrent,
                 undefined
             ),
             lastMonth: filterByDate(
-                filterUsersByRole('user'),
+                filterUsersByRole('admin'),
                 'joinedAt',
                 startPrev,
                 endPrev
@@ -77,7 +77,7 @@ export const getUsersAndTripsStats = async (): Promise<DashboardStats> => {
                 undefined
             ),
             lastMonth: filterByDate(
-                filterUsersByRole('user'),
+                filterUsersByRole('admin'),
                 'joinedAt',
                 startPrev,
                 endPrev

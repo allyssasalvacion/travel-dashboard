@@ -37,7 +37,7 @@
   --color-red-500: #b93815;
   --color-red-50: #fff4ed;
   --color-red-100: #ff543d;
-  --color-radical-700: #E43F43;
+  --color-radical-700: #e43f43;
   --color-radical-50: rgba(228,63,67,0.09);
 
   --background-image-auth: url("/assets/images/auth-img.webp");
@@ -92,7 +92,7 @@
       @apply flex items-center gap-1.5 justify-center;
     }
     article {
-      @apply mt-9 mb-[30px] flex flex-col gap-3;
+      @apply mt-9 mb-[30px] flex flex-col gap-3 items-center;
     }
   }
   .info-pill {
@@ -416,7 +416,7 @@
   }
 
   .p-30-bold {
-    @apply text-2xl md:text-3xl font-bold;
+    @apply !text-2xl md:!text-4xl !font-bold;
   }
   .p-28-bold {
     @apply text-[20px] md:text-[28px] leading-[16px] md:leading-[20px] font-bold;
@@ -443,7 +443,7 @@
     @apply text-sm md:text-base font-semibold;
   }
   .button-class {
-    @apply !bg-primary-100 !px-4 !rounded-lg !flex !items-center !justify-center !gap-1.5 !shadow-none;
+    @apply !bg-radical-700 !px-4 !rounded-lg !flex !items-center !justify-center !gap-1.5 !shadow-none;
   }
   .button-class-secondary {
     @apply !bg-white !px-4 !rounded-lg !flex !items-center !justify-center !gap-1.5 !shadow-sm;

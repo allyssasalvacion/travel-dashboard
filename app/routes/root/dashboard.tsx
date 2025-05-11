@@ -76,6 +76,8 @@ const Dashboard = ({ loaderData }: Route.ComponentProps) => {
     interest: trip.interests,
   }));
 
+  console.log('test', tripsByTravelStyle);
+
   const usersAndTrips = [
     {
       title: 'Latest user signups',
