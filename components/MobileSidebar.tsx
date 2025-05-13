@@ -1,18 +1,27 @@
 // @ts-nocheck
 
 import { SidebarComponent } from '@syncfusion/ej2-react-navigations';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import NavItems from './NavItems';
 
 const MobileSidebar = () => {
   const sidebarRef = useRef<SidebarComponent | null>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true); // Ensure this component only renders fully on the client
+  }, []);
 
   const toggleSidebar = () => {
     if (sidebarRef.current) {
       sidebarRef.current.toggle();
     }
   };
+
+  if (!isClient) {
+    return null; // Avoid rendering on the server
+  }
 
   return (
     <div className='mobile-sidebar wrapper'>
@@ -27,7 +36,11 @@ const MobileSidebar = () => {
       <SidebarComponent
         width={270}
         ref={sidebarRef}
-        created={() => sidebarRef.current?.hide()}
+        created={() => {
+          if (sidebarRef.current) {
+            sidebarRef.current.hide();
+          }
+        }}
         closeOnDocumentClick={true}
         showBackdrop={true}
         type='over'

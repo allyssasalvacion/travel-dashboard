@@ -11,9 +11,6 @@ export async function clientLoader() {
     if (!user.$id) return redirect('/sign-in');
 
     const existingUser = await getExistingUser(user.$id);
-    if (existingUser?.status === 'user') {
-      return redirect('/');
-    }
 
     return existingUser?.$id ? existingUser : await storeUserData();
   } catch (e) {
@@ -35,9 +32,9 @@ const AdminLayout = () => {
           <NavItems />
         </SidebarComponent>
       </aside>
-      <aside className='children'>
+      <main className='children'>
         <Outlet />
-      </aside>
+      </main>
     </div>
   );
 };
