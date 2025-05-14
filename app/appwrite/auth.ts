@@ -21,9 +21,15 @@ export const storeUserData = async () => {
     const user = await account.get();
     if (!user) throw new Error("User not found");
 
-    const { providerAccessToken } = (await account.getSession("current")) || {};
-    const profilePicture = providerAccessToken
-      ? await getGooglePicture(providerAccessToken)
+    const session = await account.getSession("current");
+    if (!session) {
+      console.error("No active session. Redirecting to sign-in.");
+      redirect("/sign-in");
+      return;
+    }
+
+    const profilePicture = session.providerAccessToken
+      ? await getGooglePicture(session.providerAccessToken)
       : null;
 
     const createdUser = await database.createDocument(
@@ -63,10 +69,10 @@ const getGooglePicture = async (accessToken: string) => {
 
 export const loginWithGoogle = async () => {
   try {
-    account.createOAuth2Session(
+    await account.createOAuth2Session(
       OAuthProvider.Google,
-      `${window.location.origin}/`,
-      `${window.location.origin}/404`
+      `${window.location.origin}/`,       // Successful login redirect
+      `${window.location.origin}/sign-in` // Failed login redirect
     );
   } catch (error) {
     console.error("Error during OAuth2 session creation:", error);
@@ -84,6 +90,7 @@ export const logoutUser = async () => {
 export const getUser = async () => {
   try {
     const user = await account.get();
+    console.log("User data:", user);
     if (!user) return redirect("/sign-in");
 
     const { documents } = await database.listDocuments(

@@ -1,20 +1,21 @@
 import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
-import { Loading } from 'components';
-import { Link, redirect } from 'react-router';
+import { redirect } from 'react-router';
 import { loginWithGoogle } from '~/appwrite/auth';
 import { account } from '~/appwrite/client';
 
 export async function clientLoader() {
   try {
     const user = await account.get();
-
     if (user.$id) return redirect('/');
   } catch (e) {
-    console.log('Error fetching user', e);
+    console.log('No active session found. Redirecting to sign-in.');
+    return null;
   }
 }
 
 const SignIn = () => {
+  console.log('SignIn component loaded');
+
   return (
     <main className='auth'>
       <section className='size-full glassmorphism flex-center px-6'>
