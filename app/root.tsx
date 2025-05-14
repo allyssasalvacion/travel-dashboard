@@ -38,7 +38,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body suppressHydrationWarning>
-        {children}
+        {typeof window !== 'undefined' ? children : null}
         <ScrollRestoration />
         <Scripts />
       </body>
