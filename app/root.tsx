@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   isRouteErrorResponse,
   Links,
@@ -9,6 +10,27 @@ import {
 import * as Sentry from '@sentry/react-router';
 import type { Route } from './+types/root';
 import './app.css';
+
+import { registerLicense } from '@syncfusion/ej2-base';
+import { Loading } from 'components';
+
+if (typeof window !== 'undefined') {
+  registerLicense(import.meta.env.VITE_SYNCFUSION_LICENSE_KEY);
+}
+
+function ClientOnly({ children }: { children: React.ReactNode }) {
+  const [hydrated, setHydrated] = React.useState(false);
+
+  React.useEffect(() => {
+    setHydrated(true);
+  }, []);
+
+  if (!hydrated) {
+    return <div>Loading...</div>; // Add a fallback UI
+  }
+
+  return <>{children}</>;
+}
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -23,11 +45,6 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
-import { registerLicense } from '@syncfusion/ej2-base';
-import { Loading } from 'components';
-
-registerLicense(import.meta.env.VITE_SYNCFUSION_LICENSE_KEY);
-
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en' suppressHydrationWarning={true}>
@@ -38,8 +55,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body suppressHydrationWarning={true}>
-        {typeof window !== 'undefined' ? children : null}
-        <ScrollRestoration />
+        <ClientOnly>{children}</ClientOnly>
+        {typeof window !== 'undefined' && <ScrollRestoration />}
         <Scripts />
       </body>
     </html>
@@ -65,8 +82,10 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       error.status === 404
         ? 'The requested page could not be found.'
         : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
-    Sentry.captureException(error);
+  } else if (error instanceof Error) {
+    if (import.meta.env.DEV) {
+      Sentry.captureException(error);
+    }
     details = error.message;
     stack = error.stack;
   }
