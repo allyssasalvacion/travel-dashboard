@@ -24,7 +24,7 @@ export const storeUserData = async () => {
     const session = await account.getSession("current");
     if (!session) {
       console.error("No active session. Redirecting to sign-in.");
-      redirect("/sign-in");
+      // redirect("/sign-in");
       return;
     }
 
