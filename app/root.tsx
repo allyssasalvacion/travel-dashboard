@@ -18,20 +18,6 @@ if (typeof window !== 'undefined') {
   registerLicense(import.meta.env.VITE_SYNCFUSION_LICENSE_KEY);
 }
 
-function ClientOnly({ children }: { children: React.ReactNode }) {
-  const [hydrated, setHydrated] = React.useState(false);
-
-  React.useEffect(() => {
-    setHydrated(true);
-  }, []);
-
-  if (!hydrated) {
-    return <div>Loading...</div>; // Add a fallback UI
-  }
-
-  return <>{children}</>;
-}
-
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
   {
@@ -55,7 +41,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body suppressHydrationWarning={true}>
-        <ClientOnly>{children}</ClientOnly>
+        {children}
         {typeof window !== 'undefined' && <ScrollRestoration />}
         <Scripts />
       </body>

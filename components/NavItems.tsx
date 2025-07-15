@@ -20,23 +20,33 @@ const NavItems = ({ handleClick }: { handleClick?: () => void }) => {
 
       <div className='container'>
         <nav>
-          {sidebarItems.map(({ id, href, icon, label, logout }) => (
-            <NavLink to={href!} key={id}>
-              {({ isActive }: { isActive: boolean }) => (
-                <div
-                  className={cn('group nav-item', {
-                    'bg-radical-50': isActive && !logout,
-                  })}
-                  onClick={logout ? handleLogout : handleClick}
-                >
-                  <img src={icon} alt={label} />
-                  {label}
-                </div>
-              )}
-            </NavLink>
-          ))}
+          {sidebarItems.map(({ id, href, icon, label, logout, disabled }) =>
+            disabled ? (
+              <div
+                key={id}
+                className='group nav-item opacity-50 pointer-events-none cursor-not-allowed'
+              >
+                <img src={icon} alt={label} />
+                {label}
+              </div>
+            ) : (
+              <NavLink to={href!} key={id}>
+                {({ isActive }: { isActive: boolean }) => (
+                  <div
+                    className={cn('group nav-item', {
+                      'bg-radical-50': isActive && !logout,
+                    })}
+                    onClick={logout ? handleLogout : handleClick}
+                  >
+                    <img src={icon} alt={label} />
+                    {label}
+                  </div>
+                )}
+              </NavLink>
+            )
+          )}
         </nav>
-        <footer className='nav-footer'>
+        {/* <footer className='nav-footer'>
           <img
             src={user?.imageUrl || '/assets/images/david.webp'}
             alt={user?.name || 'Guest'}
@@ -46,7 +56,7 @@ const NavItems = ({ handleClick }: { handleClick?: () => void }) => {
             <h2>{user?.name}</h2>
             <p>{user?.email}</p>
           </article>
-        </footer>
+        </footer> */}
       </div>
     </section>
   );

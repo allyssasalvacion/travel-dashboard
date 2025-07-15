@@ -7,18 +7,21 @@ export const sidebarItems = [
     icon: "/assets/icons/home.svg",
     label: "Dashboard",
     href: "/",
+    disabled: true,
   },
   {
     id: 2,
     icon: "/assets/icons/itinerary.svg",
     label: "AI Trips",
-    href: "/trips",
+    href: "/",
+    disabled: false,
   },
   {
     id: 3,
     icon: "/assets/icons/logout.svg",
     label: "Log out",
     logout: true,
+    disabled: true,
   },
 ];
 
