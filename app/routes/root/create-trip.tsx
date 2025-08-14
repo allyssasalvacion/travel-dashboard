@@ -11,7 +11,6 @@ import {
 import { useState } from 'react';
 import { world_map } from '~/constants/world_map';
 import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
-import { account } from '~/appwrite/client';
 import { useNavigate } from 'react-router';
 
 export const loader = async () => {
@@ -64,13 +63,6 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
       return;
     }
 
-    const user = await account.get();
-    if (!user.$id) {
-      console.error('User not authenticated');
-      setLoading(false);
-      return;
-    }
-
     try {
       const response = await fetch('/api/create-trip', {
         method: 'POST',
@@ -82,7 +74,6 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
           interests: formData.interest,
           budget: formData.budget,
           groupType: formData.groupType,
-          userId: user.$id,
         }),
       });
 
